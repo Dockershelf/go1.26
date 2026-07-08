@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE = 1
+export DEB_BUILD_OPTIONS=nostrip
+
+# Use the distro's golang-any as the bootstrap compiler.
+export GOROOT_BOOTSTRAP := $(shell go env GOROOT)
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	@echo "Go source needs no configure step."
+
+override_dh_auto_build:
+	cd go/src && ./make.bash
+
+override_dh_auto_install:
+	mkdir -p debian/golang-1.26-go/usr/lib/go-1.26
+	cp -a go/* debian/golang-1.26-go/usr/lib/go-1.26/
+
+override_dh_auto_test:
+	@echo "Skipping Go test suite (all.bash) during package build."
+
+override_dh_strip_nondeterminism:
+	@echo "Skipping strip_nondeterminism for upstream Go test fixtures."
+
+override_dh_dwz:
+	@echo "Skipping dwz for Go precompiled binaries."
+
+override_dh_shlibdeps:
+	@echo "Skipping shlibdeps — Go produces statically linked binaries."

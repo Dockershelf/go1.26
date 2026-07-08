@@ -1,0 +1,27 @@
+Source: golang-1.26
+Section: golang
+Priority: optional
+Maintainer: Luis Alejandro Martínez Faneyth <luis@luisalejandro.org>
+Build-Depends: debhelper-compat (= 13),
+               golang-any,
+               gcc,
+               libc6-dev,
+               git-buildpackage,
+               pristine-tar,
+               quilt
+Standards-Version: 4.7.0
+Homepage: https://go.dev
+Vcs-Browser: https://github.com/Dockershelf/go1.26
+Vcs-Git: https://github.com/Dockershelf/go1.26.git
+
+Package: golang-1.26-go
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Conflicts: golang-go
+Replaces: golang-go
+Provides: golang-go,
+         golang-1.26-go
+Description: Go programming language compiler — 1.26 (compiled from source)
+ Dockershelf build of the Go toolchain from the official golang/go source tree.
+ Installs to /usr/lib/go-1.26 with /usr/bin/go and /usr/bin/gofmt symlinks.
