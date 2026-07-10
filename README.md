@@ -1,4 +1,4 @@
-# gogo1.26
+# go1.26
 
 Debian packaging for Go 1.26: compiles the Go toolchain from the official [golang/go](https://github.com/golang/go) source tree into `golang-1.26-go` packages for enterprise `.deb`-only installs.
 
